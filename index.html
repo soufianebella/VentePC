@@ -1,1 +1,63 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>PC Store</title>\n    <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n    <nav role="navigation">\n        <h1>PC Store</h1>\n        <ul>\n            <li><a href="index.html">Home</a></li>\n            <li><a href="#products">Products</a></li>\n            <li><a href="#about">About Us</a></li>\n            <li><a href="#contact">Contact</a></li>\n        </ul>\n    </nav>\n    <header role="banner">\n        <section class="hero">\n            <h2>Welcome to the Best PC Store!</h2>\n            <p>Your one-stop shop for the latest PCs and accessories.</p>\n        </section>\n    </header>\n    <main role="main">\n        <section id="products">\n            <h2>Our Products</h2>\n            <div class="product-grid">\n                <article class="product">\n                    <h3>Gaming PC</h3>\n                    <p>High-performance PC for gaming.</p>\n                </article>\n                <article class="product">\n                    <h3>Office PC</h3>\n                    <p>A perfect choice for your daily tasks.</p>\n                </article>\n                <article class="product">\n                    <h3>Workstation</h3>\n                    <p>Powerful hardware for professional workloads.</p>\n                </article>\n            </div>\n        </section>\n    </main>\n    <footer role="contentinfo">\n        <p>&copy; 2026 PC Store. All rights reserved.</p>\n    </footer>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentePC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1 class="sr-only">VentePC</h1>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="hero">
+            <h2>Welcome to VentePC</h2>
+            <p>Your one-stop shop for the latest tech gadgets.</p>
+        </section>
+        <section id="products">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <article class="product-item" role="article" aria-label="Product 1">
+                    <h3>Product 1</h3>
+                    <p>Description of Product 1.</p>
+                    <button>Add to Cart</button>
+                </article>
+                <article class="product-item" role="article" aria-label="Product 2">
+                    <h3>Product 2</h3>
+                    <p>Description of Product 2.</p>
+                    <button>Add to Cart</button>
+                </article>
+                <!-- More product items -->
+            </div>
+        </section>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Information about the company.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required aria-required="true">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required aria-required="true">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required aria-required="true"></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 VentePC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
