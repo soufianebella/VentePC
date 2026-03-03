@@ -1,1 +1,72 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>VentePC</title>\n    <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n    <header role="banner">\n        <nav role="navigation" aria-label="Main Navigation">\n            <ul>\n                <li><a href="#hero" aria-label="Go to Hero section">Home</a></li>\n                <li><a href="#products" aria-label="View Products">Products</a></li>\n                <li><a href="#about" aria-label="Learn about us">About</a></li>\n                <li><a href="#contact" aria-label="Contact us">Contact</a></li>\n            </ul>\n        </nav>\n    </header>\n    <main>\n        <section id="hero" role="banner">\n            <h1>Welcome to VentePC!</h1>\n            <p>Your one-stop shop for all your PC needs.</p>\n            <a href="#products" class="cta-button" aria-label="View our Products">Shop Now</a>\n        </section>\n        <section id="products" role="region" aria-label="Our Products">\n            <h2>Our Products</h2>\n            <div class="product-grid">\n                <article class="product-item" aria-labelledby="product1-title">\n                    <h3 id="product1-title">Product 1</h3>\n                    <p>Description for product 1.</p>\n                </article>\n                <article class="product-item" aria-labelledby="product2-title">\n                    <h3 id="product2-title">Product 2</h3>\n                    <p>Description for product 2.</p>\n                </article>\n                <article class="product-item" aria-labelledby="product3-title">\n                    <h3 id="product3-title">Product 3</h3>\n                    <p>Description for product 3.</p>\n                </article>\n            </div>\n        </section>\n        <section id="about" role="contentinfo">\n            <h2>About Us</h2>\n            <p>Information about the company and its values.</p>\n        </section>\n        <section id="contact" role="form">\n            <h2>Contact Us</h2>\n            <form aria-label="Contact Form">\n                <label for="name">Name:</label>\n                <input type="text" id="name" name="name" aria-required="true">\n                <label for="email">Email:</label>\n                <input type="email" id="email" name="email" aria-required="true">\n                <label for="message">Message:</label>\n                <textarea id="message" name="message" aria-required="true"></textarea>\n                <button type="submit">Submit</button>\n            </form>\n        </section>\n    </main>\n    <footer role="contentinfo">\n        <p>&copy; 2026 VentePC. All rights reserved.</p>\n    </footer>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentePC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header role="banner">
+        <nav role="navigation" aria-label="Main Navigation">
+            <ul>
+                <li><a href="#hero" aria-label="Go to Hero section">Home</a></li>
+                <li><a href="#products" aria-label="View Products">Products</a></li>
+                <li><a href="#about" aria-label="Learn about us">About</a></li>
+                <li><a href="#contact" aria-label="Contact us">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" role="banner">
+            <h1>Welcome to VentePC!</h1>
+            <p>Your one-stop shop for all your PC needs.</p>
+            <a href="#products" class="cta-button" aria-label="View our Products">Shop Now</a>
+        </section>
+
+        <section id="products" role="region" aria-label="Our Products">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <article class="product-item" aria-labelledby="product1-title">
+                    <h3 id="product1-title">Product 1</h3>
+                    <p>Description for product 1.</p>
+                </article>
+                <article class="product-item" aria-labelledby="product2-title">
+                    <h3 id="product2-title">Product 2</h3>
+                    <p>Description for product 2.</p>
+                </article>
+                <article class="product-item" aria-labelledby="product3-title">
+                    <h3 id="product3-title">Product 3</h3>
+                    <p>Description for product 3.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" role="contentinfo">
+            <h2>About Us</h2>
+            <p>Information about the company and its values.</p>
+        </section>
+
+        <section id="contact" role="form">
+            <h2>Contact Us</h2>
+            <form aria-label="Contact Form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" aria-required="true">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" aria-required="true">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" aria-required="true"></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2026 VentePC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
