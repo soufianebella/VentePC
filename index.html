@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VentePC</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header role="banner">
-        <nav role="navigation" aria-label="Navigation principale">
-            <ul>
+    <header role="banner" class="site-header">
+        <nav role="navigation" aria-label="Navigation principale" class="site-nav">
+            <div class="logo">PC<span>House</span></div>
+            <button
+                type="button"
+                class="nav-toggle"
+                aria-label="Ouvrir le menu de navigation"
+                aria-expanded="false"
+                aria-controls="nav-list"
+            >
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+            <ul id="nav-list" class="nav-list">
                 <li><a href="#hero" aria-label="Aller à la section d'accueil">Accueil</a></li>
                 <li><a href="#products" aria-label="Voir nos produits">Produits</a></li>
                 <li><a href="#about" aria-label="En savoir plus sur nous">À propos</a></li>
@@ -19,54 +32,62 @@
     </header>
 
     <main>
-        <section id="hero">
-            <h1>Bienvenue chez VentePC !</h1>
-            <p>Votre boutique unique pour tous vos besoins informatiques.</p>
-            <a href="#products" class="cta-button" aria-label="Voir nos produits">Acheter maintenant</a>
-        </section>
-
-        <section id="products" role="region" aria-label="Nos Produits">
-            <h2>Nos Produits</h2>
-            <div class="product-grid">
-                <article class="product-item" aria-labelledby="product1-title">
-                    <h3 id="product1-title">Produit 1</h3>
-                    <p>Description du produit 1.</p>
-                </article>
-                <article class="product-item" aria-labelledby="product2-title">
-                    <h3 id="product2-title">Produit 2</h3>
-                    <p>Description du produit 2.</p>
-                </article>
-                <article class="product-item" aria-labelledby="product3-title">
-                    <h3 id="product3-title">Produit 3</h3>
-                    <p>Description du produit 3.</p>
-                </article>
+        <section id="hero" class="hero animate-on-scroll">
+            <div class="hero-content">
+                <h1>Bienvenue chez PC House</h1>
+                <p>Votre boutique unique pour tous vos besoins informatiques.</p>
+                <a href="#products" class="cta-button" aria-label="Voir nos produits">Voir les offres</a>
             </div>
         </section>
 
-        <section id="about">
-            <h2>À propos de nous</h2>
-            <p>Informations sur l'entreprise et ses valeurs.</p>
+        <section id="products" role="region" aria-label="Nos Produits" class="section">
+            <div class="section-header">
+                <h2>Nos Produits</h2>
+                <p>Découvrez une sélection de PC et périphériques soigneusement choisis.</p>
+            </div>
+            <div id="product-list" class="products-grid animate-on-scroll">
+                <!-- Les cartes produits sont rendues dynamiquement par script.js -->
+            </div>
         </section>
 
-        <section id="contact">
-            <h2>Contactez-nous</h2>
-            <form aria-label="Formulaire de contact">
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" aria-required="true" required>
+        <section id="about" class="section section-alt animate-on-scroll">
+            <div class="section-header">
+                <h2>À propos de nous</h2>
+            </div>
+            <p>
+                PC House propose du matériel informatique de qualité, adapté aussi bien aux joueurs, aux créateurs
+                qu’aux professionnels. Nous sélectionnons des configurations performantes et durables.
+            </p>
+        </section>
 
-                <label for="email">E-mail :</label>
-                <input type="email" id="email" name="email" aria-required="true" required>
+        <section id="contact" class="section animate-on-scroll">
+            <div class="section-header">
+                <h2>Contactez-nous</h2>
+                <p>Une question sur une configuration ou une commande ? Écrivez-nous.</p>
+            </div>
+            <form id="contact-form" class="contact-form" aria-label="Formulaire de contact">
+                <div class="form-row">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" name="name" aria-required="true" required placeholder="Votre nom complet">
+                </div>
 
-                <label for="message">Message :</label>
-                <textarea id="message" name="message" aria-required="true" required></textarea>
+                <div class="form-row">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" aria-required="true" required placeholder="vous@example.com">
+                </div>
 
-                <button type="submit">Envoyer</button>
+                <div class="form-row">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" aria-required="true" required placeholder="Décrivez votre besoin"></textarea>
+                </div>
+
+                <button type="submit" class="primary-button">Envoyer</button>
             </form>
         </section>
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; 2026 VentePC. Tous droits réservés.</p>
+    <footer role="contentinfo" class="footer">
+        <p>&copy; 2026 Sofiane. Tous droits réservés.</p>
     </footer>
 </body>
 </html>
