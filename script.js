@@ -1,95 +1,165 @@
 // script.js for VentePC
 
-// Product data array
+// --------- Données produits ----------
 const products = [
-    { id: 1, name: 'Laptop', price: 999, image: 'laptop.jpg' },
-    { id: 2, name: 'Smartphone', price: 599, image: 'smartphone.jpg' },
-    { id: 3, name: 'Tablet', price: 399, image: 'tablet.jpg' }
+    { id: 1, name: "PC Gamer RTX 4070", price: 1699, image: "image/2.jpg" },
+    { id: 2, name: "Ultrabook 14\" Pro", price: 1299, image: "image/3.jpg" },
+    { id: 3, name: "Écran 27\" 144Hz", price: 329, image: "image/4.jpg" }
 ];
 
-// Function to dynamically render products
-function renderProducts() {
-    const productContainer = document.getElementById('product-list');
-    products.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.classList.add('product-card');
-        productCard.innerHTML = `
-            <img src='${product.image}' alt='${product.name}' />
-            <h3>${product.name}</h3>
-            <p>$${product.price}</p>
-            <button onclick='addToCart(${product.id})'>Add to Cart</button>
-        `;
-        productContainer.appendChild(productCard);
-    });
+// --------- Rendu des produits ----------
+function createProductCard(product, onAddToCart) {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p class="price">${product.price.toLocaleString("fr-FR", {
+            style: "currency",
+            currency: "EUR"
+        })}</p>
+        <button type="button" class="primary-button">Ajouter au panier</button>
+    `;
+
+    const button = card.querySelector("button");
+    button.addEventListener("click", () => onAddToCart(product.id));
+
+    return card;
 }
 
-// Shopping cart functionality
+function renderProducts(container, items, onAddToCart) {
+    container.innerHTML = "";
+    const fragment = document.createDocumentFragment();
+
+    items.forEach((product) => {
+        fragment.appendChild(createProductCard(product, onAddToCart));
+    });
+
+    container.appendChild(fragment);
+}
+
+// --------- Panier (en mémoire + localStorage) ----------
 let cart = [];
 
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        cart.push(product);
-        updateCartInLocalStorage();
-        alert(`${product.name} has been added to your cart!`);
+function loadCartFromStorage() {
+    try {
+        const stored = localStorage.getItem("cart");
+        cart = stored ? JSON.parse(stored) : [];
+    } catch {
+        cart = [];
     }
 }
 
-function updateCartInLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(cart));
+function saveCartToStorage() {
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Smooth scrolling navigation
-const links = document.querySelectorAll('a[href^="#"]');
-links.forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-    });
-});
+function addToCart(productId) {
+    const product = products.find((item) => item.id === productId);
+    if (!product) return;
 
-// Intersection Observer for animations
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-            observer.unobserve(entry.target);
+    cart.push(product);
+    saveCartToStorage();
+    alert(`${product.name} a été ajouté à votre panier.`);
+}
+
+// --------- Utilitaires UI ----------
+function setupSmoothScroll() {
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const targetSelector = link.getAttribute("href");
+            const target = targetSelector && document.querySelector(targetSelector);
+
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+}
+
+function setupNavigationToggle() {
+    const navToggle = document.querySelector(".nav-toggle");
+    const navList = document.getElementById("nav-list");
+
+    if (!navToggle || !navList) return;
+
+    function closeMenu() {
+        navToggle.classList.remove("is-open");
+        navList.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+    }
+
+    navToggle.addEventListener("click", () => {
+        const isOpen = navToggle.classList.toggle("is-open");
+        navList.classList.toggle("is-open", isOpen);
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navList.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target instanceof HTMLAnchorElement) {
+            closeMenu();
         }
     });
-});
 
-const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-elementsToAnimate.forEach(element => {
-    observer.observe(element);
-});
-
-// Contact form handling
-const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    // Here, you should handle the form data, e.g., send it to a server.
-    alert('Form submitted successfully!');
-    contactForm.reset();
-});
-
-// Lazy loading images
-const lazyImages = document.querySelectorAll('img[data-src]');
-const imgObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
-            imgObserver.unobserve(img);
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            closeMenu();
         }
     });
-});
+}
 
-lazyImages.forEach(img => {
-    imgObserver.observe(img);
-});
+function setupScrollAnimations() {
+    const elementsToAnimate = document.querySelectorAll(".animate-on-scroll");
+    if (!elementsToAnimate.length) return;
 
-// Initial rendering of products
-renderProducts();
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("fade-in");
+            obs.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    elementsToAnimate.forEach((element) => observer.observe(element));
+}
+
+function setupContactForm() {
+    const contactForm = document.getElementById("contact-form");
+    if (!contactForm) return;
+
+    contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const name = String(formData.get("name") || "").trim();
+
+        alert(
+            name
+                ? `Merci ${name}, nous reviendrons vers vous rapidement.`
+                : "Merci, nous reviendrons vers vous rapidement."
+        );
+
+        contactForm.reset();
+    });
+}
+
+// --------- Initialisation globale ----------
+document.addEventListener("DOMContentLoaded", () => {
+    const productContainer = document.getElementById("product-list");
+    if (productContainer) {
+        loadCartFromStorage();
+        renderProducts(productContainer, products, addToCart);
+    }
+
+    setupSmoothScroll();
+    setupNavigationToggle();
+    setupScrollAnimations();
+    setupContactForm();
+});
