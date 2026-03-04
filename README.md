@@ -1,7 +1,7 @@
 # Projet VentePC
 
 ## Introduction
-VentePC est un projet dédié à la vente de matériel informatique en ligne. Ce projet a été refactorisé pour améliorer sa maintenabilité et sa performance.
+PC House est un projet dédié à la vente de matériel informatique en ligne. Ce projet a été refactorisé pour améliorer sa maintenabilité et sa performance.
 
 ## Aperçu de la Refactorisation
 La refactorisation a inclus plusieurs changements importants :
@@ -25,3 +25,5 @@ Pour les débutants, il est conseillé de :
 - Explorer les documentations des technologies utilisées.
 - Prendre le temps de comprendre l'architecture avant de commencer le développement.
 - Participer à des forums ou groupes de discussion pour poser des questions et échanger des idées.
+
+- ## Voici le lien du site en ligne : https://fianesothug.github.io/VentePC/
