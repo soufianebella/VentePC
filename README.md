@@ -26,4 +26,4 @@ Pour les débutants, il est conseillé de :
 - Prendre le temps de comprendre l'architecture avant de commencer le développement.
 - Participer à des forums ou groupes de discussion pour poser des questions et échanger des idées.
 
-- ## Voici le lien du site en ligne : https://fianesothug.github.io/VentePC/
+- ## Voici le lien du site en ligne : https://soufianebella.github.io/VentePC/
